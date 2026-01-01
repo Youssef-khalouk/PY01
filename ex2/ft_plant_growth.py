@@ -1,5 +1,7 @@
 
 class Plant:
+    """A class representing a plant with information."""
+
     def __init__(self, name: str, height: int, Age: int):
         self.name = name.capitalize()
         self.height = height
@@ -8,6 +10,7 @@ class Plant:
         self.new_age = 0
 
     def get_info(self):
+        """ print the plant information """
         print("=== Day 1 ===")
         print(f"{self.name}: {self.height}cm,", end='')
         print(f" {self.Age} days old")
@@ -17,9 +20,11 @@ class Plant:
         print(f"Growth this week: +{self.new_age}cm")
 
     def grow(self):
+        """ make plant grow with 1 cm """
         self.new_height += 1
 
     def age(self):
+        """ make plant growup with 1 day """
         self.new_age += 1
 
 

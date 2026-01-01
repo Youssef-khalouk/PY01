@@ -1,5 +1,6 @@
 
 def ft_garden_intro():
+    """ print rose information """
     name = "Rose"
     height = 25
     age = 30

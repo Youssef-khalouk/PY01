@@ -11,13 +11,16 @@ class Plant:
         self.set_age(Age)
 
     def __str__(self) -> str:
+        """ return string about plant info. """
         return f"Created: {self._name} ({self._height}cm, {self._Age} days)"
 
     def get_name(self) -> str:
+        """return the name of the plant."""
         return self._name
 
     @classmethod
     def get_info(cls) -> None:
+        """ print information of the plant."""
         print("=== Day 1 ===")
         print(f"{cls._name}: {cls._height}cm,", end='')
         print(f" {cls._Age} days old")
@@ -27,21 +30,27 @@ class Plant:
         print(f"Growth this week: +{cls._new_age}cm")
 
     def grow(self) -> None:
+        """make the plant grow by one cm."""
         self._new_height += 1
 
     def age(self) -> None:
+        """make the plant grow up by one day."""
         self._new_age += 1
 
     def get_height(self) -> int:
+        """return the height of the plant."""
         return self._height + self._new_height
 
     def get_new_height(self) -> int:
+        """return the new height of the plant."""
         return self._new_height
 
     def get_age(self) -> int:
+        """return the age of the plant."""
         return self._Age + self._new_age
 
     def set_height(self, height: int) -> None:
+        """set the height of the plant."""
         if height < 0:
             print(f"Invalid operation attempted: height {height}cm [REJECTED]")
             print("Security: Negative height rejected")
@@ -49,6 +58,7 @@ class Plant:
             self._height = height
 
     def set_age(self, age: int) -> None:
+        """set the age of the plant."""
         if age < 0:
             print(f"Invalid operation attempted: age {age} days [REJECTED]")
             print("Security: Negative age rejected")
@@ -67,12 +77,15 @@ class FloweringPlant(Plant):
         self._blooming = blooming
 
     def grow(self) -> None:
+        """make the flowering plant grow by one cm."""
         super().grow()
 
     def get_color(self) -> str:
+        """return the color of the flowering plant"""
         return self.flower_color
 
     def get_blomming(self) -> bool:
+        """get the blomming of the flowering plant."""
         return self._blooming
         # print(f"{self.get_name()} is blooming: {self.blooming}")
 
@@ -87,9 +100,11 @@ class PrizeFlower(FloweringPlant):
         self._prize_points = prize_points
 
     def grow(self) -> None:
+        """make the prieflower grow by one cm."""
         super().grow()
 
     def get_prize_points(self) -> int:
+        """return the prize points."""
         return self._prize_points
 
 
@@ -104,16 +119,19 @@ class GardenManager:
         GardenManager.total_gardens += 1
 
     class GardenStats:
+        """a helper class for the garden manager."""
         def __init__(self, manager):
             self.manager = manager
 
         def total_growth(self) -> int:
+            """return the total growth of plants."""
             total = 0
             for plant in self.manager.get_plants():
                 total += plant.get_new_height()
             return total
 
         def plant_counts(self) -> tuple[int, int, int]:
+            """return the plants count (regular and flowering and prize)."""
             regular, flowering, prize = 0, 0, 0
             for p in self.manager.get_plants():
                 if isinstance(p, PrizeFlower):
@@ -125,23 +143,27 @@ class GardenManager:
             return regular, flowering, prize
 
         def validate_heights(self, max_height=500) -> bool:
-            """Utility to check if all plants are under max_height"""
+            """Utility to check if all plants are under max_height."""
             for p in self.manager.get_plants():
                 if p.get_height() > max_height:
                     return False
             return True
 
     def get_gardener_name(self) -> str:
+        """return the gardener name of this plant."""
         return self._gardener_name
 
     def get_plants(self) -> list[Plant]:
+        """return the plants array."""
         return self._plants
 
     def add_plant(self, plant) -> None:
+        """adding a plant to the plants array."""
         self._plants.append(plant)
         print(f"Added {plant.get_name()} to {self._gardener_name}'s garden")
 
     def help_plants_grow(self):
+        """make all plants grow by one cm."""
         print(f"\n{self._gardener_name} is helping all plants grow...")
         for plant in self._plants:
             plant.grow()
@@ -168,6 +190,7 @@ class GardenManager:
 
     @staticmethod
     def utility_message():
+        """utility message."""
         print("Garden Manager Utility Function: Organize your gardens wisely!")
 
 

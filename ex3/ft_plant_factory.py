@@ -1,5 +1,7 @@
 
 class Plant:
+    """A class representing a plant with information."""
+
     def __init__(self, name: str, height: int, Age: int):
         self.name = name.capitalize()
         self.height = height
@@ -8,9 +10,11 @@ class Plant:
         self.new_age = 0
 
     def __str__(self):
+        """ return string about plant info """
         return f"Created: {self.name} ({self.height}cm, {self.Age} days)"
 
     def get_info(self):
+        """ print plant info """
         print("=== Day 1 ===")
         print(f"{self.name}: {self.height}cm,", end='')
         print(f" {self.Age} days old")
@@ -20,20 +24,25 @@ class Plant:
         print(f"Growth this week: +{self.new_age}cm")
 
     def grow(self):
+        """make plant grow with one cm"""
         self.new_height += 1
 
     def age(self):
+        """make plant grow up one day"""
         self.new_age += 1
 
 
 class PlantFactory:
+    """A class representing a plantfactory for plants."""
     def __init__(self):
         self.plants = []
 
     def create_plant(self, name, height, age):
+        """ create plant and add it to array of plants. """
         self.plants.append(Plant(name, height, age))
 
     def display_plants(self):
+        """ print all plants info in plants array. """
         print("=== 🌱 Plant Factory Output 🌱 ===")
         for plant in self.plants:
             print(plant)
